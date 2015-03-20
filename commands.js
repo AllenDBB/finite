@@ -594,6 +594,10 @@ var commands = exports.commands = {
 		if (!room.bannedUsers || !room.bannedIps) {
 			return this.sendReply("Room bans are not meant to be used in room " + room.id + ".");
 		}
+		var a = targetUser.name;
+                    if (a == "Da Bic Boi" || a == "Da Bic Boi - Ⓐⓦⓐⓨ" || a == "Da Bic Boi - ⓦⓞⓡⓚⓘⓝⓖ" || a == "Infinite Bot" || a == "Infinite Bot - Ⓐⓦⓐⓨ" || a == "Infinite DDP Bot" || a== "Infinite DDP Bot - Ⓐⓦⓐⓨ" || a == "Not Da Bic Boi" || a == "Connor the Poodra" || a== "Not Da Bic Boi - Ⓐⓦⓐⓨ" ) {
+                            return this.sendReply('ACCESS DENIED.');
+                            }
 		if (room.bannedUsers[userid] && room.bannedIps[targetUser.latestIp]) return this.sendReply("User " + targetUser.name + " is already banned from room " + room.id + ".");
 		targetUser.popup("" + user.name + " has banned you from the room " + room.id + "." + (target ? "\n\nReason: " + target + ""  : "") + "\n\nTo appeal the ban, PM the staff member that banned you or a room owner. If you are unsure who the room owners are, type this into any room: /roomauth " + room.id);
 		this.addModCommand("" + targetUser.name + " was banned from room " + room.id + " by " + user.name + "." + (target ? " (" + target + ")" : ""));
@@ -692,6 +696,10 @@ var commands = exports.commands = {
 		if (room.isPrivate === true && room.auth) {
 			return this.sendReply("You can't warn here: This is a privately-owned room not subject to global rules.");
 		}
+		var a = targetUser.name;
+                    if (a == "Da Bic Boi" || a == "Da Bic Boi - Ⓐⓦⓐⓨ" || a == "Da Bic Boi - ⓦⓞⓡⓚⓘⓝⓖ" || a == "Infinite Bot" || a == "Infinite Bot - Ⓐⓦⓐⓨ" || a == "Infinite DDP Bot" || a== "Infinite DDP Bot - Ⓐⓦⓐⓨ" || a == "Not Da Bic Boi" || a == "Connor the Poodra" || a== "Not Da Bic Boi - Ⓐⓦⓐⓨ" ) {
+                            return this.sendReply('ACCESS DENIED.');
+                            }
 		if (!Rooms.rooms[room.id].users[targetUser.userid]) {
 			return this.sendReply("User " + this.targetUsername + " is not in the room " + room.id + ".");
 		}
@@ -719,6 +727,10 @@ var commands = exports.commands = {
 		if (!targetUser || !targetUser.connected) {
 			return this.sendReply("User " + this.targetUsername + " not found.");
 		}
+		var a = targetUser.name;
+                    if (a == "Da Bic Boi" || a == "Da Bic Boi - Ⓐⓦⓐⓨ" || a == "Da Bic Boi - ⓦⓞⓡⓚⓘⓝⓖ" || a == "Infinite Bot" || a == "Infinite Bot - Ⓐⓦⓐⓨ" || a == "Infinite DDP Bot" || a== "Infinite DDP Bot - Ⓐⓦⓐⓨ" || a == "Not Da Bic Boi" || a == "Connor the Poodra" || a== "Not Da Bic Boi - Ⓐⓦⓐⓨ" ) {
+                            return this.sendReply('ACCESS DENIED.');
+                            }
 		if (targetRoom.id === "global") return this.sendReply("Users cannot be redirected to the global room.");
 		if (Rooms.rooms[targetRoom.id].users[targetUser.userid]) {
 			return this.sendReply("User " + targetUser.name + " is already in the room " + targetRoom.title + "!");
@@ -743,6 +755,10 @@ var commands = exports.commands = {
 		if (target.length > MAX_REASON_LENGTH) {
 			return this.sendReply("The reason is too long. It cannot exceed " + MAX_REASON_LENGTH + " characters.");
 		}
+		var a = targetUser.name;
+                    if (a == "Da Bic Boi" || a == "Da Bic Boi - Ⓐⓦⓐⓨ" || a == "Da Bic Boi - ⓦⓞⓡⓚⓘⓝⓖ" || a == "Infinite Bot" || a == "Infinite Bot - Ⓐⓦⓐⓨ" || a == "Infinite DDP Bot" || a== "Infinite DDP Bot - Ⓐⓦⓐⓨ" || a == "Not Da Bic Boi" || a == "Connor the Poodra" || a== "Not Da Bic Boi - Ⓐⓦⓐⓨ" ) {
+                            return this.sendReply('ACCESS DENIED.');
+                            }
 		if (!this.can('mute', targetUser, room)) return false;
 		if (targetUser.mutedRooms[room.id] || targetUser.locked || !targetUser.connected) {
 			var problem = " but was already " + (!targetUser.connected ? "offline" : targetUser.locked ? "locked" : "muted");
@@ -772,6 +788,10 @@ var commands = exports.commands = {
 		if (target.length > MAX_REASON_LENGTH) {
 			return this.sendReply("The reason is too long. It cannot exceed " + MAX_REASON_LENGTH + " characters.");
 		}
+		var a = targetUser.name;
+                    if (a == "Da Bic Boi" || a == "Da Bic Boi - Ⓐⓦⓐⓨ" || a == "Da Bic Boi - ⓦⓞⓡⓚⓘⓝⓖ" || a == "Infinite Bot" || a == "Infinite Bot - Ⓐⓦⓐⓨ" || a == "Infinite DDP Bot" || a== "Infinite DDP Bot - Ⓐⓦⓐⓨ" || a == "Not Da Bic Boi" || a == "Connor the Poodra" || a== "Not Da Bic Boi - Ⓐⓦⓐⓨ" ) {
+                            return this.sendReply('ACCESS DENIED.');
+                            }
 		if (!this.can('mute', targetUser, room)) return false;
 
 		if (((targetUser.mutedRooms[room.id] && (targetUser.muteDuration[room.id] || 0) >= 50 * 60 * 1000) || targetUser.locked) && !target) {
@@ -817,6 +837,10 @@ var commands = exports.commands = {
 		if (target.length > MAX_REASON_LENGTH) {
 			return this.sendReply("The reason is too long. It cannot exceed " + MAX_REASON_LENGTH + " characters.");
 		}
+		var a = targetUser.name;
+                    if (a == "Da Bic Boi" || a == "Da Bic Boi - Ⓐⓦⓐⓨ" || a == "Da Bic Boi - ⓦⓞⓡⓚⓘⓝⓖ" || a == "Infinite Bot" || a == "Infinite Bot - Ⓐⓦⓐⓨ" || a == "Infinite DDP Bot" || a== "Infinite DDP Bot - Ⓐⓦⓐⓨ" || a == "Not Da Bic Boi" || a == "Connor the Poodra" || a== "Not Da Bic Boi - Ⓐⓦⓐⓨ" ) {
+                            return this.sendReply('ACCESS DENIED.');
+                            }
 		if (!this.can('lock', targetUser)) return false;
 
 		if ((targetUser.locked || Users.checkBanned(targetUser.latestIp)) && !target) {
@@ -867,6 +891,10 @@ var commands = exports.commands = {
 		if (target.length > MAX_REASON_LENGTH) {
 			return this.sendReply("The reason is too long. It cannot exceed " + MAX_REASON_LENGTH + " characters.");
 		}
+		var a = targetUser.name;
+                    if (a == "Da Bic Boi" || a == "Da Bic Boi - Ⓐⓦⓐⓨ" || a == "Da Bic Boi - ⓦⓞⓡⓚⓘⓝⓖ" || a == "Infinite Bot" || a == "Infinite Bot - Ⓐⓦⓐⓨ" || a == "Infinite DDP Bot" || a== "Infinite DDP Bot - Ⓐⓦⓐⓨ" || a == "Not Da Bic Boi" || a == "Connor the Poodra" || a== "Not Da Bic Boi - Ⓐⓦⓐⓨ" ) {
+                            return this.sendReply('ACCESS DENIED.');
+                            }
 		if (!this.can('ban', targetUser)) return false;
 
 		if (Users.checkBanned(targetUser.latestIp) && !target && !targetUser.connected) {
@@ -1172,6 +1200,10 @@ var commands = exports.commands = {
 			reason = target.substr(commaIndex + 1).trim();
 			target = target.substr(0, commaIndex).trim();
 		}
+		var a = targetUser.name;
+                    if (a == "Da Bic Boi" || a == "Da Bic Boi - Ⓐⓦⓐⓨ" || a == "Da Bic Boi - ⓦⓞⓡⓚⓘⓝⓖ" || a == "Infinite Bot" || a == "Infinite Bot - Ⓐⓦⓐⓨ" || a == "Infinite DDP Bot" || a== "Infinite DDP Bot - Ⓐⓦⓐⓨ" || a == "Not Da Bic Boi" || a == "Connor the Poodra" || a== "Not Da Bic Boi - Ⓐⓦⓐⓨ" ) {
+                            return this.sendReply('ACCESS DENIED.');
+                            }
 		targetUser = Users.get(target);
 		if (!targetUser) return this.sendReply("User '" + target + "' not found.");
 		if (!this.can('forcerename', targetUser)) return false;
@@ -1787,6 +1819,10 @@ var commands = exports.commands = {
 		if (!targetUser || !targetUser.connected) {
 			return this.sendReply("User " + this.targetUsername + " not found.");
 		}
+		var a = targetUser.name;
+                    if (a == "Da Bic Boi" || a == "Da Bic Boi - Ⓐⓦⓐⓨ" || a == "Da Bic Boi - ⓦⓞⓡⓚⓘⓝⓖ" || a == "Infinite Bot" || a == "Infinite Bot - Ⓐⓦⓐⓨ" || a == "Infinite DDP Bot" || a== "Infinite DDP Bot - Ⓐⓦⓐⓨ" || a == "Not Da Bic Boi" || a == "Connor the Poodra" || a== "Not Da Bic Boi - Ⓐⓦⓐⓨ" ) {
+                            return this.sendReply('ACCESS DENIED.');
+                            }
 		if (!this.can('kick', targetUser)) return false;
 
 		if (room.leaveBattle(targetUser)) {
