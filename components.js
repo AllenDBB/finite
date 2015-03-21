@@ -842,8 +842,8 @@ var components = exports.components = {
 
             if (cmd in {'': 1, show: 1, view: 1, display: 1}) {
                 var message = '';
-                for (var a in Config.customAvatars)
-                    message += "<strong>" + Tools.escapeHTML(a) + ":</strong> " + Tools.escapeHTML(Config.customAvatars[a]) + "<br />";
+                for (var a in Config.customavatars)
+                    message += "<strong>" + Tools.escapeHTML(a) + ":</strong> " + Tools.escapeHTML(Config.customavatars[a]) + "<br />";
                 return this.sendReplyBox(message);
             }
 
@@ -856,7 +856,7 @@ var components = exports.components = {
                 var avatar = parts.slice(2).join(',').trim();
 
                 if (!userid) return this.sendReply("You didn't specify a user.");
-                if (Config.customAvatars[userid]) return this.sendReply(userid + " already has a custom avatar.");
+                if (Config.customavatars[userid]) return this.sendReply(userid + " already has a custom avatar.");
 
                 var hash = require('crypto').createHash('sha512').update(userid + '\u0000' + avatar).digest('hex').slice(0, 8);
                 pendingAdds[hash] = {userid: userid, avatar: avatar};
@@ -891,14 +891,14 @@ var components = exports.components = {
 
             case 'delete':
                 var userid = toId(parts[1]);
-                if (!Config.customAvatars[userid]) return this.sendReply(userid + " does not have a custom avatar.");
+                if (!Config.customavatars[userid]) return this.sendReply(userid + " does not have a custom avatar.");
 
-                if (Config.customAvatars[userid].toString().split('.').slice(0, -1).join('.') !== userid)
-                    return this.sendReply(userid + "'s custom avatar (" + Config.customAvatars[userid] + ") cannot be removed with this script.");
-                require('fs').unlink('./config/avatars/' + Config.customAvatars[userid], (function (e) {
-                    if (e) return this.sendReply(userid + "'s custom avatar (" + Config.customAvatars[userid] + ") could not be removed: " + e.toString());
+                if (Config.customavatars[userid].toString().split('.').slice(0, -1).join('.') !== userid)
+                    return this.sendReply(userid + "'s custom avatar (" + Config.customavatars[userid] + ") cannot be removed with this script.");
+                require('fs').unlink('./config/avatars/' + Config.customavatars[userid], (function (e) {
+                    if (e) return this.sendReply(userid + "'s custom avatar (" + Config.customavatars[userid] + ") could not be removed: " + e.toString());
 
-                    delete Config.customAvatars[userid];
+                    delete Config.customavatars[userid];
                     this.sendReply(userid + "'s custom avatar removed successfully");
                 }).bind(this));
                 break;
