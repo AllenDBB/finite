@@ -12,7 +12,7 @@
  */
 
 var crypto = require('crypto');
-var fs = require('fs');
+var fs = require('graceful-fs');
 
 const MAX_REASON_LENGTH = 300;
 

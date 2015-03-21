@@ -27,7 +27,7 @@ const THROTTLE_DELAY = 600;
 const THROTTLE_BUFFER_LIMIT = 6;
 const THROTTLE_MULTILINE_WARN = 4;
 
-var fs = require('fs');
+var fs = require('graceful-fs');
 
 /* global Users: true */
 var Users = module.exports = getUser;

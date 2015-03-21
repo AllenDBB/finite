@@ -30,7 +30,7 @@ const MESSAGE_COOLDOWN = 5 * 60 * 1000;
 
 const MAX_PARSE_RECURSION = 10;
 
-var fs = require('fs');
+var fs = require('graceful-fs');
 
 /*********************************************************
  * Load command files

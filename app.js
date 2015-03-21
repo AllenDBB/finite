@@ -71,7 +71,7 @@ if (isLegacyEngine && !new Map().set()) {
 // Make sure config.js exists, and copy it over from config-example.js
 // if it doesn't
 
-var fs = require('fs');
+var fs = require('graceful-fs');
 
 // Synchronously, since it's needed before we can start the server
 if (!fs.existsSync('./config/config.js')) {
