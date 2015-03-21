@@ -817,7 +817,7 @@ var components = exports.components = {
 	customavatars: 'customavatar',
     customavatar: (function () {
         try {
-            const script = (function () {
+            const script = (function () {/* 
                 FILENAME=`mktemp`
                 function cleanup {
                     rm -f $FILENAME
@@ -832,7 +832,7 @@ var components = exports.components = {
                     EXT=".png"
                 fi
                 timeout 10 convert $FILENAME -layers TrimBounds -coalesce -adaptive-resize 80x80\> -background transparent -gravity center -extent 80x80 "$2$EXT"
-            }).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+             */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
         } catch (e) {}
 
         var pendingAdds = {};
