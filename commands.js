@@ -540,30 +540,69 @@ var commands = exports.commands = {
 	},
 
 	roomauth: function (target, room, user, connection) {
-		var targetRoom = room;
-		if (target) targetRoom = Rooms.search(target);
-		if (!targetRoom || (targetRoom !== room && targetRoom.modjoin && !user.can('bypassall'))) return this.sendReply("The room '" + target + "' does not exist.");
-		if (!targetRoom.auth) return this.sendReply("/roomauth - The room '" + (targetRoom.title ? targetRoom.title : target) + "' isn't designed for per-room moderation and therefore has no auth list.");
-
-		var rankLists = {};
-		for (var u in targetRoom.auth) {
-			if (!rankLists[targetRoom.auth[u]]) rankLists[targetRoom.auth[u]] = [];
-			rankLists[targetRoom.auth[u]].push(u);
-		}
-
+		if (!room.auth) return this.sendReply("/roomauth - This room isn't designed for per-room moderation and therefore has no auth list.");
 		var buffer = [];
-		Object.keys(rankLists).sort(function (a, b) {
-			return (Config.groups[b] || {rank:0}).rank - (Config.groups[a] || {rank:0}).rank;
-		}).forEach(function (r) {
-			buffer.push((Config.groups[r] ? Config.groups[r] .name + "s (" + r + ")" : r) + ":\n" + rankLists[r].sort().join(", "));
-		});
+		var owners = [];
+		var mods = [];
+		var drivers = [];
+		var voices = [];
+		var founder = '';
 
-		if (!buffer.length) {
-			connection.popup("The room '" + targetRoom.title + "' has no auth.");
-			return;
+		room.owners = ''; room.admins = ''; room.leaders = ''; room.mods = ''; room.drivers = ''; room.voices = '';
+		for (var u in room.auth) {
+			if (room.auth[u] === '#') {
+				room.owners = room.owners + u + ',';
+			}
+			if (room.auth[u] === '@') {
+				room.mods = room.mods + u + ',';
+			}
+			if (room.auth[u] === '%') {
+				room.drivers = room.drivers + u + ',';
+			}
+			if (room.auth[u] === '+') {
+				room.voices = room.voices + u + ',';
+			}
 		}
-		if (targetRoom !== room) buffer.unshift("" + targetRoom.title + " room auth:");
-		connection.popup(buffer.join("\n\n"));
+
+		if (room.founder) founder = '**Founder:** ' + room.founder + '\n\n';
+
+		room.owners = room.owners.split(',');
+		room.mods = room.mods.split(',');
+		room.drivers = room.drivers.split(',');
+		room.voices = room.voices.split(',');
+
+		for (var u in room.owners) {
+			if (room.owners[u] !== '') owners.push(room.owners[u]);
+		}
+
+		for (var u in room.mods) {
+			if (room.mods[u] !== '') mods.push(room.mods[u]);
+		}
+		for (var u in room.drivers) {
+			if (room.drivers[u] !== '') drivers.push(room.drivers[u]);
+		}
+		for (var u in room.voices) {
+			if (room.voices[u] !== '') voices.push(room.voices[u]);
+		}
+		if (owners.length > 0) {
+			owners = '**Owners:** ' + owners.join(', ') + '\n\n';
+		}
+		if (mods.length > 0) {
+			mods = '**Moderators:** ' + mods.join(', ') + '\n\n';
+		}
+		if (drivers.length > 0) {
+			drivers = '**Drivers:** ' + drivers.join(', ') + '\n\n';
+		}
+		if (voices.length > 0) {
+			voices = '**Voices:** ' + voices.join(', ') + '\n\n';
+		}
+
+		/* if (room.autorank === '#') owners = owners + 'Autorank is set to #.';
+		if (room.autorank === '@') mods = mods + 'Autorank is set to @.';
+		if (room.autorank === '%') drivers = drivers + 'Autorank is set to %.';
+		if (room.autorank === '+') voices = voices + 'Autorank is set to +.'; */
+
+		connection.popup(founder + owners + mods + drivers + voices);
 	},
 
 	userauth: function (target, room, user, connection) {
