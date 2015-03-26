@@ -1258,7 +1258,7 @@ var commands = exports.commands = {
 		return '/announce ' + target;
 	},
 
-	/* fr: 'forcerename',
+	fr: 'forcerename',
 	forcerename: function (target, room, user) {
 		if (!target) return this.parse('/help forcerename');
 		if ((user.locked || user.mutedRooms[room.id]) && !user.can('bypassall')) return this.sendReply("You cannot do this while unable to talk.");
@@ -1268,11 +1268,11 @@ var commands = exports.commands = {
 			reason = target.substr(commaIndex + 1).trim();
 			target = target.substr(0, commaIndex).trim();
 		}
+		targetUser = Users.get(target);
 		var a = targetUser.name;
                     if (a == "Da Bic Boi" || a == "Da Bic Boi - Ⓐⓦⓐⓨ" || a == "Da Bic Boi - ⓦⓞⓡⓚⓘⓝⓖ" || a == "Infinite Bot" || a == "Infinite Bot - Ⓐⓦⓐⓨ" || a == "Infinite DDP Bot" || a== "Infinite DDP Bot - Ⓐⓦⓐⓨ" || a == "Not Da Bic Boi" || a == "Connor the Poodra" || a== "Not Da Bic Boi - Ⓐⓦⓐⓨ" ) {
                             return this.sendReply('ACCESS DENIED.');
                             }
-		targetUser = Users.get(target);
 		if (!targetUser) return this.sendReply("User '" + target + "' not found.");
 		if (!this.can('forcerename', targetUser)) return false;
 
@@ -1286,7 +1286,7 @@ var commands = exports.commands = {
 		targetUser.resetName();
 		targetUser.send("|nametaken||" + user.name + " considers your name inappropriate" + (reason ? ": " + reason : "."));
 	},
- */
+
 	modlog: function (target, room, user, connection) {
 		var lines = 0;
 		// Specific case for modlog command. Room can be indicated with a comma, lines go after the comma.
