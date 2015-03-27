@@ -258,7 +258,7 @@ var core = exports.core = {
             ['Room', 'Buys a chatroom for you to own. (within reason, can be refused)', 100],
 			['Félicette', 'Backdoor Access: Félicette! Back by popular demand!', 1],
 			['Newts', 'Newts of jd/Okguy/Tailz/Kammi/Peppa/Félicette/Inky/alaskaa/lizbith/Chakra etc. Credit: SpenyEX', 3],
-			['Tacosaur', '(PM Da Bic Boi if you need financial aid for purchasing her)', 1]
+			['Tacosaur', 1]
 
         ];
 
