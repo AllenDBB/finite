@@ -732,7 +732,7 @@ Tournament = (function () {
         }
 
         var tourSize = this.generator.users.size;
-        if (this.room.isOfficial && tourSize >= 4/* Core.tournaments.tourSize */) {
+        if (this.room.isOfficial && tourSize >= 2/* Core.tournaments.tourSize */) {
             var firstMoney = Math.round(tourSize / 2/* Core.tournaments.amountEarn */),
             secondMoney = Math.round(firstMoney / 2),
             firstBuck = 'buck',
@@ -741,7 +741,7 @@ Tournament = (function () {
             if (secondMoney > 1) secondBuck = 'bucks';
 
             // annouces the winner/runnerUp
-            this.room.add('|raw|<strong><font color=' + Core.profile.color + '>' + Tools.escapeHTML(winner) + '</font> has also won <font color=' + Core.profile.color + '>' + firstMoney + '</font> ' + firstBuck + ' for winning the tournament!</strong>');
+            this.room.add('|raw|<strong><font color=' + Core.profile.color + '>' + Tools.escapeHTML(winner) + '</font> has won <font color=' + Core.profile.color + '>' + firstMoney + '</font> ' + firstBuck + ' for winning the tournament!</strong>');
             if (runnerUp) this.room.add('|raw|<strong><font color=' + Core.profile.color + '>' + Tools.escapeHTML(runnerUp) + '</font> has also won <font color=' + Core.profile.color + '>' + secondMoney + '</font> ' + secondBuck + ' for winning the tournament!</strong>');
 
             var wid = toId(winner), // winner's userid
