@@ -647,55 +647,68 @@ Tournament = (function () {
 		this.update();
 	};
 	Tournament.prototype.onBattleWin = function (room, winner) {
-		var from = Users.get(room.p1);
-		var to = Users.get(room.p2);
+        var from = Users.get(room.p1),
+            to = Users.get(room.p2),
+            fromElo = Number(Core.stdin('elo', toId(from))),
+            toElo = Number(Core.stdin('elo', toId(to))), arr;
 
-		var result = 'draw';
-		if (from === winner) {
-			result = 'win';
-		} else if (to === winner) {
-			result = 'loss';
-		}
+        var result = 'draw';
+        if (from === winner) {
+            result = 'win';
+            if (this.room.isOfficial && this.generator.users.size >= Core.tournaments.tourSize) {
+                arr = Core.calculateElo(fromElo, toElo);
+                Core.stdout('elo', toId(from), arr[0], function () {
+                    Core.stdout('elo', toId(to), arr[1]);
+                });
+            }
+        } else if (to === winner) {
+            result = 'loss';
+            if (this.room.isOfficial && this.generator.users.size >= Core.tournaments.tourSize) {
+                arr = Core.calculateElo(toElo, fromElo);
+                Core.stdout('elo', toId(to), arr[0], function () {
+                    Core.stdout('elo', toId(from), arr[1]);
+                });
+            }
+        }
 
-		if (result === 'draw' && !this.generator.isDrawingSupported) {
-			this.room.add('|tournament|battleend|' + from.name + '|' + to.name + '|' + result + '|' + room.battle.score.join(',') + '|fail');
+        if (result === 'draw' && !this.generator.isDrawingSupported) {
+            this.room.add('|tournament|battleend|' + from.name + '|' + to.name + '|' + result + '|' + room.battle.score.join(',') + '|fail');
 
-			this.generator.setUserBusy(from, false);
-			this.generator.setUserBusy(to, false);
-			this.inProgressMatches.set(from, null);
+            this.generator.setUserBusy(from, false);
+            this.generator.setUserBusy(to, false);
+            this.inProgressMatches.set(from, null);
 
-			this.isBracketInvalidated = true;
-			this.isAvailableMatchesInvalidated = true;
+            this.isBracketInvalidated = true;
+            this.isAvailableMatchesInvalidated = true;
 
-			this.runAutoDisqualify();
-			this.update();
-			return this.room.update();
-		}
+            this.runAutoDisqualify();
+            this.update();
+            return;
+        }
 
-		var error = this.generator.setMatchResult([from, to], result, room.battle.score);
-		if (error) {
-			// Should never happen
-			this.room.add("Unexpected " + error + " from setMatchResult([" + from.userid + ", " + to.userid + "], " + result + ", " + room.battle.score + ") in onBattleWin(" + room.id + ", " + winner.userid + "). Please report this to an admin.");
-			return this.room.update();
-		}
+        var error = this.generator.setMatchResult([from, to], result, room.battle.score);
+        if (error) {
+            // Should never happen
+            this.room.add("Unexpected " + error + " from setMatchResult([" + from.userid + ", " + to.userid + "], " + result + ", " + room.battle.score + ") in onBattleWin(" + room.id + ", " + winner.userid + "). Please report this to an admin.");
+            return;
+        }
 
-		this.room.add('|tournament|battleend|' + from.name + '|' + to.name + '|' + result + '|' + room.battle.score.join(','));
+        this.room.add('|tournament|battleend|' + from.name + '|' + to.name + '|' + result + '|' + room.battle.score.join(','));
 
-		this.generator.setUserBusy(from, false);
-		this.generator.setUserBusy(to, false);
-		this.inProgressMatches.set(from, null);
+        this.generator.setUserBusy(from, false);
+        this.generator.setUserBusy(to, false);
+        this.inProgressMatches.set(from, null);
 
-		this.isBracketInvalidated = true;
-		this.isAvailableMatchesInvalidated = true;
+        this.isBracketInvalidated = true;
+        this.isAvailableMatchesInvalidated = true;
 
-		if (this.generator.isTournamentEnded()) {
-			this.onTournamentEnd();
-		} else {
-			this.runAutoDisqualify();
-			this.update();
-		}
-		this.room.update();
-	};
+        if (this.generator.isTournamentEnded()) {
+            this.onTournamentEnd();
+        } else {
+            this.runAutoDisqualify();
+            this.update();
+        }
+    };
 	Tournament.prototype.onTournamentEnd = function () {
         this.room.add('|tournament|end|' + JSON.stringify({
             results: this.generator.getResults().map(usersToNames),
