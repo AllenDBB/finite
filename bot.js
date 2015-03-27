@@ -1,4 +1,4 @@
-/**
+/* /**
  * Bot
  *
  * Credits
@@ -535,3 +535,4 @@ exports.commands = commands;
 
 
 joinServer();
+ */
