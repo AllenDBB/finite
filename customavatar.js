@@ -1,3 +1,5 @@
+exports.customAvatar = {
+
 var fs = require('fs');
 
 function reloadCustomAvatars() {
@@ -140,4 +142,4 @@ exports.commands = {
 				return this.sendReply("Invalid command. Valid commands are `/customavatar set, user, avatar` and `/customavatar delete, user`.");
 		}
 	}
-};
+}};
