@@ -958,11 +958,7 @@ var components = exports.components = {
             Tournaments = require(path.join(__dirname, './', './tournaments/index.js'));
             Tournaments.tournaments = runningTournaments;
 			
-			this.sendReply('Reloading Bot...');
-            CommandParser.uncacheTree(path.join(__dirname, './', 'bot.js'));
-            Bot = require(path.join(__dirname, './', 'bot.js'));
-
-            this.sendReply('Reloading Core...');
+		    this.sendReply('Reloading Core...');
             CommandParser.uncacheTree(path.join(__dirname, './', './core.js'));
             Core = require(path.join(__dirname, './', './core.js')).core;
 
