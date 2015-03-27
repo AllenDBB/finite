@@ -218,20 +218,25 @@ var components = exports.components = {
                     this.sendReply('You have purchased a custom symbol. You will have this until you log off for more than an hour. You may now use /customsymbol now.');
                     this.parse('/help customsymbol');
                     this.sendReply('If you do not want your custom symbol anymore, you may use /resetsymbol to go back to your old symbol.');
-                } else {
-                    this.sendReply('You have purchased ' + target + '. Please contact an admin to get ' + target + '.');
-                    for (var u in Users.users) {
-                        if (Users.get(u).group === '~') Users.get(u).send('|pm|' + user.group + user.name + '|' + Users.get(u).group + Users.get(u).name + '|' + 'I have bought ' + target + ' from the shop.');
-                    }
                 }
-				if (target.toLowerCase() === 'newts') {
+				else if (target.toLowerCase() === 'newts') {
                     this.sendReply('You have purchased a newt.');
                     this.parse('/newt68');
-                    } else {
+                    }
+				else if (target.toLowerCase() === 'declare') {
+                    user.canShopDeclare = true;
+                    this.sendReply('~**You have purchased a global declare. It can be used by typing /shopdeclare "your message goes here".**~');
+                    }
+				else if (target.toLowerCase() === 'pm') {
+                    user.canShopPM = true;
+                    this.sendReply('~**You have purchased a global personal message. It can be used by typing /shoppm "your message goes here".**~');
+                    }
+				else {
                     this.sendReply('You have purchased ' + target + '. Please contact an admin to get ' + target + '.');
                     for (var u in Users.users) {
                         if (Users.get(u).group === '~') Users.get(u).send('|pm|' + user.group + user.name + '|' + Users.get(u).group + Users.get(u).name + '|' + 'I have bought ' + target + ' from the shop.');
                     }
+                
                 }
                 room.add(user.name + ' has bought ' + target + ' from the shop.');
             }
@@ -383,6 +388,29 @@ var components = exports.components = {
         user.updateIdentity();
         user.canCustomSymbol = false;
         user.hasCustomSymbol = true;
+    },
+	
+	shopdeclare: function (target, room, user) {
+		if (!target) return this.parse('/help globaldeclare');
+		if (!user.canShopDeclare) return this.sendReply('You need to buy this item from the shop to use.');
+
+		for (var id in Rooms.rooms) {
+			if (id !== 'global') Rooms.rooms[id].addRaw('<div class="broadcast-blue"><b>' + target + '</b></div>');
+		}
+		this.logModCommand(user.name + " globally declared " + target);
+		user.canShopDeclare = false;
+	},
+	shoppm: function (target, room, user) {
+        if (!user.canShopPM) return this.sendReply('You need to buy this item from the shop to use.');
+        if (!target) return this.parse('/help shoppm');
+
+        var pmName = '~Global PM [Do not reply]';
+
+        for (var i in Users.users) {
+            var message = '|pm|' + pmName + '|' + Users.users[i].getIdentity() + '|' + target;
+            Users.users[i].send(message);
+        }
+		user.canShopPM = false;
     },
 
     resetsymbol: function (target, room, user) {

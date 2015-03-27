@@ -251,14 +251,16 @@ var core = exports.core = {
         var shop = [
             ['Symbol', 'Buys a custom symbol to go infront of name and puts you at top of userlist. (Temporary until restart, certain symbols are blocked)', 5],
             ['Fix', 'Buys the ability to alter your current custom avatar or trainer card. (don\'t buy if you have neither)', 10],
-            ['Poof', 'Buy a poof message to be added into the pool of possible poofs.', 15],
-            ['Who', 'Buys a custom whois bot message for your name.', 25],
+            //['Poof', 'Buy a poof message to be added into the pool of possible poofs.', 15],
+            //['Who', 'Buys a custom whois bot message for your name.', 25],
             // ['Avatar', 'Buys an custom avatar to be applied to your name (You supply. Images larger than 80x80 may not show correctly)', 30],
             ['Trainer', 'Buys a trainer card which shows information through a command.', 50],
-            ['Room', 'Buys a chatroom for you to own. (within reason, can be refused)', 100],
+            ['Room', 'Buys a chatroom for you to own. [LIMITED TIME DISCOUNT PRICE](within reason, can be refused)', 100],
 			['Félicette', 'Backdoor Access: Félicette! Back by popular demand!', 1],
-			['Newts', 'Newts of jd/Okguy/Tailz/Kammi/Peppa/Félicette/Inky/alaskaa/lizbith/Chakra etc. Credit: SpenyEX', 3],
-			['Tacosaur', 1]
+			['Newts', '(noun) a small, slender-bodied amphibian with lungs and a well-developed tail, typically spending its adult life on land and returning to water to breed.', 3],
+			['Tacosaur', 'Your name gets added to /tacosaur.', 1],
+			['Declare', 'Globally declare a message to the whole server! [Can be refused](A small blue message that every chatroom can see; Uses: League Advertisements, Celebrations, ETC)', 10],
+			['PM', 'Send a message to everyone on the server. [Can be refused] (Everyone on the server will receive a message from "~Server PM - [Do not reply] Uses: League Advertisements, Celebrations, ETC', 20]
 
         ];
 
@@ -272,7 +274,10 @@ var core = exports.core = {
             s = s + '<tr><td>' + shop[start][0] + '</td><td>' + shop[start][1] + '</td><td>' + shop[start][2] + '</td></tr>';
             start++;
         }
-        s += '</tbody></table><center>To buy an item from the shop, use /buy <em>command</em>.</center>';
+        s += '</tbody></table><center>To buy an item from the shop, click one of the buttons below!.</center>';
+		s += '</tbody></table><center><button name="send" value="/buy Symbol"> Symbol </button><button name="send" value="/buy Fix"> Fix</button><button name="send" value="/buy Trainer"> Trainer</button></center>';
+		s += '</tbody></table><center><button name="send" value="/buy Room"> Room </button><button name="send" value="/buy Félicette"> Félicette</button><button name="send" value="/buy Newts"> Newts</button></center>';
+		s += '</tbody></table><center><button name="send" value="/buy Tacosaur"> Tacosaur </button><button name="send" value="/buy Declare"> Declare</button><button name="send" value="/buy PM"> PM</button></center>';
         return s;
     },
 
