@@ -768,8 +768,9 @@ var components = exports.components = {
     },
 
     kick: function (target, room, user) {
-        if (!this.can('kick')) return;
         if (!target) return this.parse('/help kick');
+        var targetUser = this.targetUser
+        if (!this.can('mute', targetUser, room)) return;
 
         var targetUser = Users.get(target);
         if (!targetUser) return this.sendReply('User ' + target + ' not found.');
@@ -860,7 +861,7 @@ var components = exports.components = {
     }, */
 
     poll: function (target, room, user) {
-        if (!this.can('lock')) return;
+        if (!this.can('mute', null, room)) return;
         if (Poll[room.id].question) return this.sendReply('There is currently a poll going on already.');
         if (!this.canTalk()) return;
 
