@@ -271,7 +271,7 @@ var core = exports.core = {
         var s = '<table border="1" cellspacing="0" cellpadding="5" width="100%"><tbody><tr><th>Command</th><th>Description</th><th>Cost</th></tr>';
         var start = 0;
         while (start < shop.length) {
-            s = s + '<tr><td><center><button name="send" value="/buy ' + shop[start][0] + '"> ' + shop[start][0] + '</button></td><td>' + shop[start][2] + '</td><td>' + shop[start][2] + '</td></tr>';
+            s = s + '<tr><td><center><button name="send" value="/buy ' + shop[start][0] + '"> ' + shop[start][0] + '</button></td><td>' + shop[start][1] + '</td><td>' + shop[start][2] + '</td></tr>';
             start++;
         }
         
