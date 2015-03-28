@@ -103,7 +103,8 @@ var components = exports.components = {
 		}
 
 		if (user.name.length > 18) return this.sendReply('Your username exceeds the length limit.');
-
+		if ((user.locked || user.mutedRooms[room.id]) && !user.can('bypassall')) return this.sendReply("You cannot do this while unable to talk.");
+		
 		if (!user.isAway) {
 			user.originalName = user.name;
 			var awayName = user.name + ' - '+t;
