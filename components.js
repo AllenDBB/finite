@@ -362,11 +362,11 @@ var components = exports.components = {
                     }
 				else if (target.toLowerCase() === 'declare') {
                     user.canShopDeclare = true;
-                    this.sendReply('~**You have purchased a global declare. It can be used by typing /shopdeclare "your message goes here".**~');
+                    this.sendReply('|raw|<font size=3>You have purchased a global declare. It can be used by typing <b>/shopdeclare</b> "your message goes here".</font>');
                     }
 				else if (target.toLowerCase() === 'pm') {
                     user.canShopPM = true;
-                    this.sendReply('~**You have purchased a global personal message. It can be used by typing /shoppm "your message goes here".**~');
+                    this.sendReply('|raw| <font size=3>You have purchased a global personal message. It can be used by typing <b>/shoppm</b> "your message goes here".</font>');
                     }
 				else {
                     this.sendReply('You have purchased ' + target + '. Please contact an admin to get ' + target + '.');
@@ -375,7 +375,7 @@ var components = exports.components = {
                     }
                 
                 }
-                room.add(user.name + ' has bought ' + target + ' from the shop.');
+                room.add('|raw| <b>' + user.name + ' has bought ' + target + ' from the shop.</b>');
             }
         }
     },

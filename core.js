@@ -274,7 +274,7 @@ var core = exports.core = {
             s = s + '<tr><td><center><button name="send" value="/buy ' + shop[start][0] + '"> ' + shop[start][0] + '</button></td><td>' + shop[start][1] + '</td><td>' + shop[start][2] + '</td></tr>';
             start++;
         }
-        
+        //s += '</tbody></table><center>You have' + Core.stdin('money', targetUser.userid) + 'bucks.</center>';
         return s;
     },
 
