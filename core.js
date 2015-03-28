@@ -271,13 +271,10 @@ var core = exports.core = {
         var s = '<table border="1" cellspacing="0" cellpadding="5" width="100%"><tbody><tr><th>Command</th><th>Description</th><th>Cost</th></tr>';
         var start = 0;
         while (start < shop.length) {
-            s = s + '<tr><td>' + shop[start][0] + '</td><td>' + shop[start][1] + '</td><td>' + shop[start][2] + '</td></tr>';
+            s = s + '<tr><td><center><button name="send" value="/buy ' + shop[start][0] + '"> ' + shop[start][0] + '</button></td><td><center><button name="send" value="/buy ' + shop[start][1] + '"> ' + shop[start][1] + '</button></td><td><center><button name="send" value="/buy ' + shop[start][2] + '"> ' + shop[start][2] + '</button></td></tr>';
             start++;
         }
-        s += '</tbody></table><center>To buy an item from the shop, click one of the buttons below!.</center>';
-		s += '</tbody></table><center><button name="send" value="/buy Symbol"> Symbol </button><button name="send" value="/buy Fix"> Fix</button><button name="send" value="/buy Trainer"> Trainer</button></center>';
-		s += '</tbody></table><center><button name="send" value="/buy Room"> Room </button><button name="send" value="/buy Félicette"> Félicette</button><button name="send" value="/buy Newts"> Newts</button></center>';
-		s += '</tbody></table><center><button name="send" value="/buy Tacosaur"> Tacosaur </button><button name="send" value="/buy Declare"> Declare</button><button name="send" value="/buy PM"> PM</button></center>';
+        
         return s;
     },
 
