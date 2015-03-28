@@ -255,7 +255,7 @@ var core = exports.core = {
             //['Who', 'Buys a custom whois bot message for your name.', 25],
             // ['Avatar', 'Buys an custom avatar to be applied to your name (You supply. Images larger than 80x80 may not show correctly)', 30],
             ['Trainer', 'Buys a trainer card which shows information through a command.', 50],
-            ['Room', 'Buys a chatroom for you to own. [LIMITED TIME DISCOUNT PRICE](within reason, can be refused)', 100],
+            ['Room', 'Buys a chatroom for you to own. [LIMITED TIME DISCOUNT PRICE](within reason, can be refused)', 50],
 			['Félicette', 'Backdoor Access: Félicette! Back by popular demand!', 1],
 			['Newts', '(noun) a small, slender-bodied amphibian with lungs and a well-developed tail, typically spending its adult life on land and returning to water to breed.', 3],
 			['Tacosaur', 'Your name gets added to /tacosaur.', 1],
