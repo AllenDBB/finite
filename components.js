@@ -404,7 +404,7 @@ var components = exports.components = {
         if (!user.canShopPM) return this.sendReply('You need to buy this item from the shop to use.');
         if (!target) return this.parse('/help shoppm');
 
-        var pmName = '~Global PM [Do not reply]';
+        var pmName = '~Global PM from: ' + user.name +' [Do not reply]';
 
         for (var i in Users.users) {
             var message = '|pm|' + pmName + '|' + Users.users[i].getIdentity() + '|' + target;
