@@ -3,7 +3,9 @@ const AUTO_DISQUALIFY_WARNING_TIMEOUT = 30 * 1000;
 
 var TournamentGenerators = {
 	roundrobin: require('./generator-round-robin.js').RoundRobin,
-	elimination: require('./generator-elimination.js').Elimination
+	elimination: require('./generator-elimination.js').Elimination,
+	rr: require('./generator-round-robin.js').RoundRobin,
+	elim: require('./generator-elimination.js').Elimination
 };
 
 var Tournament;
