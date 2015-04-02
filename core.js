@@ -259,7 +259,7 @@ var core = exports.core = {
 			['Félicette', 'Backdoor Access: Félicette! Back by popular demand!', 300],
 			['Newts', '(noun) a small, slender-bodied amphibian with lungs and a well-developed tail, typically spending its adult life on land and returning to water to breed.', 3],
 			['Tacosaur', 'Your name gets added to /tacosaur.', 150],
-			//['Declare', 'Globally declare a message to the whole server! [Can be refused](A small blue message that every chatroom can see; Uses: League Advertisements, Celebrations, ETC)', 10],
+			['Declare', 'Globally declare a message to the whole server! [Can be refused](A small blue message that every chatroom can see; Uses: League Advertisements, Celebrations, ETC)', 50],
 			['PM', 'Send a message to everyone on the server. [Can be refused] (Everyone on the server will receive a message from "~Server PM - [Do not reply] Uses: League Advertisements, Celebrations, ETC', 20]
 
         ];
