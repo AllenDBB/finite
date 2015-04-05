@@ -379,7 +379,45 @@ var components = exports.components = {
             }
         }
     },
+	
+	transferbuck: 'transfermoney',
+    transferbucks: 'transfermoney',
+    transfermoney: function (target, room, user) {
+        if (!target) return this.parse('/help transfermoney');
+        if (!this.canTalk()) return;
 
+        if (target.indexOf(',') >= 0) {
+            var parts = target.split(',');
+            parts[0] = this.splitTarget(parts[0]);
+            var targetUser = this.targetUser;
+        }
+
+        if (!targetUser) return this.sendReply('User ' + this.targetUsername + ' not found.');
+        if (targetUser.userid === user.userid) return this.sendReply('You cannot transfer money to yourself.');
+        if (isNaN(parts[1])) return this.sendReply('Very funny, now use a real number.');
+        if (parts[1] < 1) return this.sendReply('You can\'t transfer less than one buck at a time.');
+        if (String(parts[1]).indexOf('.') >= 0) return this.sendReply('You cannot transfer money with decimals.');
+
+        var userMoney = Core.stdin('money', user.userid);
+        var targetMoney = Core.stdin('money', targetUser.userid);
+
+        if (parts[1] > Number(userMoney)) return this.sendReply('You cannot transfer more money than what you have.');
+
+        var b = 'bucks';
+        var cleanedUp = parts[1].trim();
+        var transferMoney = Number(cleanedUp);
+        if (transferMoney === 1) b = 'buck';
+
+        userMoney = Number(userMoney) - transferMoney;
+        targetMoney = Number(targetMoney) + transferMoney;
+
+        Core.stdout('money', user.userid, userMoney, function () {
+            Core.stdout('money', targetUser.userid, targetMoney);
+        });
+
+        this.sendReply('You have successfully transferred ' + transferMoney + ' ' + b + ' to ' + targetUser.name + '. You now have ' + userMoney + ' bucks.');
+        targetUser.send(user.name + ' has transferred ' + transferMoney + ' ' + b + ' to you. You now have ' + targetMoney + ' bucks.');
+    },
     
 
     tell: function (target, room, user) {
