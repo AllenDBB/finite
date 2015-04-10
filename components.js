@@ -34,6 +34,7 @@ var components = exports.components = {
 	drawing: 'away',
 	afk: 'away',
 	fap: 'away',
+	poop: 'away',
 	away: function (target, room, user, connection, cmd) {
 		if (!this.can('away')) return false;
 		// unicode away message idea by Siiilver
