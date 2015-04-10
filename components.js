@@ -742,7 +742,7 @@ var components = exports.components = {
 
         Core.stdout('money', targetUser.userid, total);
 
-        this.sendReply(targetUser.name + ' has losted ' + takeMoney + ' ' + b + '. This user now has ' + total + ' bucks.');
+        this.sendReply(targetUser.name + ' has lost ' + takeMoney + ' ' + b + '. This user now has ' + total + ' bucks.');
         targetUser.send(user.name + ' has taken ' + takeMoney + ' ' + b + ' from you. You now have ' + total + ' bucks.');
     },
 
