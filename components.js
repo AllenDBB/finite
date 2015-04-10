@@ -72,9 +72,13 @@ var components = exports.components = {
 			t = 'Ⓒⓡⓨⓘⓝⓖ';
 			t2 = 'Crying';
 			break;
-			case 'fap': //Connor begged me to add this.
+			case 'fap': //Venom thought of it and Connor begged me to add this.
 			t = 'Ⓕⓐⓟⓟⓘⓝⓖ';
 			t2 = 'Fapping';
+			break;
+			case 'poop': //GL✘Hobo✘Itsme/Dusk Ω Espeon/helper/dman begged me to add this.
+			t = 'ⓟⓞⓞⓟⓘⓝⓖ';
+			t2 = 'Pooping';
 			break;
 			case 'cry':
 			t = 'Ⓒⓡⓨⓘⓝⓖ';
