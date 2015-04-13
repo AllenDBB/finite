@@ -47,7 +47,7 @@ var components = exports.components = {
 			break;
 			case 'afk':
 			t = 'Away';
-			t2 = 'Away';
+			t2 = 'AFK';
 			break;
 			case 'sleeping':
 			t = 'Ⓢⓛⓔⓔⓟⓘⓝⓖ';
