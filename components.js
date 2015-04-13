@@ -45,10 +45,6 @@ var components = exports.components = {
 			t = 'Ⓑⓤⓢⓨ';
 			t2 = 'Busy';
 			break;
-			case 'afk':
-			t = 'Away';
-			t2 = 'AFK';
-			break;
 			case 'sleeping':
 			t = 'Ⓢⓛⓔⓔⓟⓘⓝⓖ';
 			t2 = 'Sleeping';
@@ -551,7 +547,7 @@ var components = exports.components = {
         if (!user.canShopPM) return this.sendReply('You need to buy this item from the shop to use.');
         if (!target) return this.parse('/help shoppm');
 
-        var pmName = '~w PM from: ' + user.name +' [Do not reply]';
+        var pmName = '~Global PM from: ' + user.name +' [Do not reply]';
 
         for (var i in Users.users) {
             var message = '|pm|' + pmName + '|' + Users.users[i].getIdentity() + '|' + target;
