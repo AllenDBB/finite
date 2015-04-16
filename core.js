@@ -343,8 +343,11 @@ var core = exports.core = {
         'Kreygasm': 'http://107.161.19.92:8000/Twitch/Kreygasm.png',
 		'Obama': 'http://107.161.19.92:8000/Twitch/obama.jpeg',
 		'Gaben': 'http://107.161.19.92:8000/Twitch/Gaben2.png',
+		'fukya': 'http://i.imgur.com/ampqCZi.gif',
+		'oshet': 'http://i.imgur.com/yr5DjuZ.png',
 		//Homophobia filter
-		'feg': 'http://107.161.19.92:8000/Twitch/feg.png'
+		'feg': 'http://107.161.19.92:8000/Twitch/feg.png',
+		
     },
 
     processEmoticons: function (text) {
